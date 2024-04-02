@@ -1,3 +1,6 @@
 runner
 *.exe
 .vscode
+test.c
+main.c
+test.txt
