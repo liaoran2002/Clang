@@ -1,6 +1,6 @@
 runner
 *.exe
 .vscode
-test.c
+test*.c
 main.c
 test.txt

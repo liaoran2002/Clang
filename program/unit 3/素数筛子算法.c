@@ -14,11 +14,9 @@ int main() {
     printf("请输入一个正整数：");
     scanf("%d", &n);
     for (i = 2; i <= n; i++) {
-        for (j = 2; j <= i / 2; j++) {
-            if (i % j == 0) {
+        for (j = 2; j <= i / 2; j++)
+            if (i % j == 0)
                 break;
-            }
-        }
         if (j == i / 2 + 1)
             printf("%d ", i);
     }

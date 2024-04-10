@@ -806,6 +806,137 @@ sno=4,score=60.000000
 sno=5,score=85.000000
 ```
 
-## 13.练习题
+## 13.文件操作
+
+文件操作是指对文件进行读、写、创建、删除等操作。
+
+文件操作的调用格式：
+
+```c
+#include <stdio.h>
+int main() {
+    FILE *fp;
+    fp = fopen("文件名", "模式");
+    if (fp == NULL) {
+        printf("文件打开失败！");
+        return 0;
+    }
+    // 读文件
+    // 写文件
+    // 创建文件
+    // 删除文件
+    fclose(fp);
+    return 0;
+}
+```
+
+### 1. 打开文件：`fopen()`
+
+```c
+FILE *fopen(const char *filename, const char *mode);
+```
+- `filename`：要打开的文件名。
+- `mode`：打开模式，有以下几种：
+  - `r`：以只读方式打开文件。
+  - `w`：以写方式打开文件，若文件不存在则创建，若文件存在则清空文件内容。
+  - `a`：以追加方式打开文件，若文件不存在则创建，若文件存在则在文件末尾追加内容。
+  - `r+`：以读写方式打开文件。
+  - `w+`：以读写方式打开文件，若文件不存在则创建，若文件存在则清空文件内容。
+  - `a+`：以读写方式打开文件，若文件不存在则创建，若文件存在则在文件末尾追加内容。
+
+### 2. 读文件：`fread()`
+
+```c
+size_t fread(void *ptr, size_t size, size_t nmemb, FILE *stream);
+```
+- `ptr`：存放读入数据的缓冲区。
+- `size`：每次读入的字节数。
+- `nmemb`：读入的块数。
+- `stream`：要读入的文件指针。
+
+### 3. 写文件：`fwrite()`
+
+```c
+size_t fwrite(const void *ptr, size_t size, size_t nmemb, FILE *stream);
+```
+- `ptr`：存放要写入数据的缓冲区。
+- `size`：每次写入的字节数。
+- `nmemb`：写入的块数。
+- `stream`：要写入的文件指针。
+
+### 4. 关闭文件：`fclose()`
+
+```c
+int fclose(FILE *stream);
+``` 
+- `stream`：要关闭的文件指针。
+
+### 6. 删除文件：`remove()`
+```c
+int remove(const char *filename);
+```
+- `filename`：要删除的文件名。
+
+### 7. 定位文件：`fseek()`
+```c
+int fseek(FILE *stream, long int offset, int whence);
+```
+- `stream`：要定位的文件指针。
+- `offset`：相对于`whence`的偏移量。
+  - `offset`为正，表示从当前位置往后偏移`offset`个字节。
+  - `offset`为负，表示从当前位置往前偏移`offset`个字节。
+  - `offset`为0，表示重新定位到文件开头。
+  - 注意：`offset`必须为`long int`类型。
+  - 注意：`offset`不能超过文件大小。
+- `whence`：偏移量的基准位置，有以下几种：
+  - `SEEK_SET`：从文件开头开始。
+  - `SEEK_CUR`：从当前位置开始。
+  - `SEEK_END`：从文件末尾开始。
+
+### 8. 重置文件：`rewind()`
+```c
+void rewind(FILE *stream);
+```
+- `stream`：要重置的文件指针。
+
+### 9. 读取文件：`fgetc()`
+```c
+int fgetc(FILE *stream);
+```
+- `stream`：要读取的文件指针。
+
+
+### 10. 写入文件：`fputc()`
+```c
+int fputc(int c, FILE *stream);
+```
+- `c`：要写入的字符。
+- `stream`：要写入的文件指针。
+
+
+### 11. 读取字符串：`fgets()`
+```c
+char *fgets(char *s, int n, FILE *stream);
+```
+- `s`：存放读入的字符串。
+- `n`：读入的最大字符数。
+- `stream`：要读入的文件指针。
+
+
+### 12. 写入字符串：`fputs()`
+```c
+int fputs(const char *s, FILE *stream);
+```
+- `s`：存放要写入的字符串。
+- `stream`：要写入的文件指针。
+
+### 13. 错误处理：`ferror()`
+```c
+int ferror(FILE *stream);
+```
+- `stream`：要检查错误的文件指针。
+
+
+## 14.练习题
 
 [C语言编程练习题.md](program/C语言编程练习题.md) 
